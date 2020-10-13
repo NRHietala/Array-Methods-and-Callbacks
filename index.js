@@ -20,6 +20,8 @@ console.log('its working');
 // }));
 
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
+
+
 function getFinals(data) {
     const scores = data.filter(item => {
         if(item.Stage.includes('final')) {
@@ -30,28 +32,31 @@ function getFinals(data) {
 }
 console.log(getFinals(fifaData));
 
+
 // /* Task 3: Implement a higher-order function called `getYears` that accepts the callback function `getFinals`, and returns an array called `years` containing all of the years in the dataset */
 
-function getYears(callBack) {
-    return callBack.years;
+
+function getYears(getFinals) {
+    
 }
-getYears(getFinals());
+
+
 
 // /* Task 4: Implement a higher-order function called `getWinners`, that accepts the callback function `getFinals()` and determine the winner (home or away) of each `finals` game. Return the name of all winning countries in an array called `winners` */ 
 
-// function getWinners(callBack) {
-//     let winners = callBack.map(item => {
-//         if (item['Home Team Goals'] > item["Away Team Goals"]) {
-//             return `${item["Home Team Name"]} won!`
-//         } else if (item['Home Team Goals'] === item["Away Team Goals"]) {
-//             return "It was a tie!";
-//         } else {
-//             return `${item["Away Team Name"]} won!`
-//         }
-//     })
-// };
+function getWinners(data, getFinalscb) {
+    let winners = data.map(item => {
+        if (item['Home Team Goals'] > item["Away Team Goals"]) {
+            return `${item["Home Team Name"]} won!`
+        } else if (item['Home Team Goals'] === item["Away Team Goals"]) {
+            return "It was a tie!";
+        } else {
+            return `${item["Away Team Name"]} won!`
+        }
+    })
+};
 
-// console.log(getWinners(getFinals));
+console.log(getWinners(getFinals));
 
 // /* Task 5: Implement a higher-order function called `getWinnersByYear` that accepts the following parameters and returns a set of strings "In {year}, {country} won the world cup!" 
 
