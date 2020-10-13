@@ -1,6 +1,7 @@
 import { fifaData } from './fifa.js';
 console.log(fifaData);
 
+
 console.log('its working');
 // ⚽️ M  V P ⚽️ //
 
@@ -12,20 +13,26 @@ console.log('its working');
 (d) Away Team goals for 2014 world cup final
 (e) Winner of 2014 world cup final */
 
+// console.log(fifaData.map(item => {
+//     if(item['Year'] === 2014 && item['Stage'] === "Final") {
+//         return item["Home Team Name"];
+//     }
+// }));
 
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
 
-function getFinals(/* code here */) {
-
-    /* code here */
-
-};
+function getFinals(data) {
+    data.filter(item => {
+        if(item.state.includes('final')) {
+            return item.state;
+        }
+    })
+}
 
 /* Task 3: Implement a higher-order function called `getYears` that accepts the callback function `getFinals`, and returns an array called `years` containing all of the years in the dataset */
 
-function getYears(/* code here */) {
-
-    /* code here */
+function getYears(getFinals) {
+    const years = getFinals.filter(item => item.year);
 
 };
 
@@ -33,9 +40,16 @@ getYears();
 
 /* Task 4: Implement a higher-order function called `getWinners`, that accepts the callback function `getFinals()` and determine the winner (home or away) of each `finals` game. Return the name of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
-
-    /* code here */
+function getWinners(getFinals) {
+    let winners = getFinals.map(item => {
+        if (item['Home Team Goals'] > item["Away Team Goals"]) {
+            return `${item["Home Team Name"]} won!`
+        } else if (item['Home Team Goals'] === item["Away Team Goals"]) {
+            return "It was a tie!";
+        } else {
+            return `${item["Away Team Name"]} won!`
+        }
+    })
 
 };
 
